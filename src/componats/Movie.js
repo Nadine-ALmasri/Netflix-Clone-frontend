@@ -1,14 +1,22 @@
-
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import ModelMovie from './ModelMovie.js';
 import { useState } from 'react';
+
+
+
+
+
 function Movie (props){
+
+  const[comments, setComments]=useState("")
+  const[path , setPath]=useState("https://www.themoviedb.org/t/p/w300_and_h450_bestv2")
 const[showFlag, setShowFlag]=useState(false)
-const [clickedMovie, setClickedMovie] = useState({});
-/*const addMovieHandler = (data) => {
+var [clickedMovie, setClickedMovie] = useState({});
+const addMovieHandler = (data) => {
   const serverUrl = 'http://localhost:3005/addMovie'
   axios.post(serverUrl, data.data)
     .then(respons => {
@@ -16,10 +24,11 @@ const [clickedMovie, setClickedMovie] = useState({});
     }).catch((error) => {
       console.log(error)
     })
-}*/
+}
 const handelShow =(item)=>{
     setShowFlag(true) ;
     setClickedMovie(item)
+    clickedMovie=item
     console.log(clickedMovie)
 }
 
@@ -28,28 +37,41 @@ const handleClose=()=>{
 }
 
     
-const { id,title, release_date, poster_path, overview } = props.item
+//const { title, release_date, poster_path, overview } = props.item
     return(
         <>
-      
-        <Row xs={1} md={2} className="g-4">
-       {Array.from({ length: 1 }).map((_, idx) => (
-         <Col key={id}>
-           <Card bg='dark' text="muted"border="muted" >
-             <Card.Img variant="top" src={"https://www.themoviedb.org/t/p/w300_and_h450_bestv2"+poster_path}  />
-             <Card.Body>
-               <Card.Title><h1>{title}</h1></Card.Title>
-               <Card.Text>
-               <h3>{release_date}</h3>
-           <p>{overview}</p>
-               </Card.Text>
-               <button onClick={handelShow()}>See more</button>
-             </Card.Body>
-           </Card>
-         </Col>
+ <Row xs={1} md={2} className="g-4">
+      {Array.from({ length: 1}).map((_, idx) => (
+        <Col key={props.data.id}>
+          <Card width="100"bg='dark' text="muted" border="muted" >
+            <Card.Img border="danger"variant="top" src={"https://www.themoviedb.org/t/p/w300_and_h450_bestv2"+props.data.poster_path} />
+            <Card.Body >
+              <Card.Title>{props.data.title}</Card.Title>
+              <Card.Text>{props.data.release_date}</Card.Text>
+              <Card.Text>
+              {props.data.overview}
+              </Card.Text>
+              <Card.Text bg="light">
+         {comments}
+              </Card.Text>
+
+              <Button variant="primary" onClick={() => handelShow(props.data)}>
+            See more
+          </Button>
+            </Card.Body>
+          </Card>
+        </Col>
       ))}
-     </Row>
-     <ModelMovie showFlag={showFlag} handleClose={handleClose} clickedMovie={clickedMovie}/>
+    </Row>
+
+
+
+
+
+      
+       
+     <ModelMovie showFlag={showFlag} handleClose={handleClose} clickedMovie={clickedMovie}  setComments={setComments}
+        comments={comments} />
             
         </>
     )}
