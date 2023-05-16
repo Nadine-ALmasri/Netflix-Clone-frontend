@@ -5,12 +5,13 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { useEffect } from "react"
 function FavList() {
-  const [favArray, setFavArray] = useState([])
-  const gitMovieHandler = (item) => {
+  var [favArray, setFavArray] = useState([])
+  const gitMovieHandler = () => {
     const serverUrl = 'http://localhost:3005/addMovie'
     axios.get(serverUrl).then(data => {
       console.log(data)
       setFavArray(data.data)
+favArray=data.data
       console.log(favArray)
     }).catch((error) => {
       console.log(error)

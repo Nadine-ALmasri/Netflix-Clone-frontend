@@ -1,98 +1,51 @@
-import axios from "axios";
+
 import { useState } from "react";
 import { useEffect } from "react";
 import MovieList from "./MovieList";
+
+
+
 function Home (){
 
 
-   
-        const [movieData, setMovieData] = useState([])
-        const getTrending = () => {
-            const serverURL = "http://localhost:3005/trending";
-            
-            axios.get(serverURL)
-             .then(response=>{
-                
-                 setMovieData(response.data)
-                 console.log(movieData)
-             })
-             .catch((error)=>{
-            
-                 console.log(error)
-         })
-                  
-                .catch((error) => console.log(error))
-    
-        }
-        useEffect(() => {
-            getTrending()
-           
-            
-        }, [])
-        return (
-            <>
-                <MovieList data={movieData} />
-            </>
-        )
-    }
-    export default Home;
 
 
 
 
-    /*
-    const [movieData, setMovieData] = useState([])
-   
-   const getTrending =(data)=>{
-        const serverUrl='http://localhost:3005/trending'
-        fetch(serverUrl)
-        .then(result=>{
-            console.log(result);
-        result.json()
-        .then(data=>{
-            console.log(data);
-            setMovieData(data);
-console.log(movieData)
+  var[movieData, setMovieData] = useState([]);
 
-        })
-    })
-    .catch(error=>{
-        console.log(error);
-    })
+    const getAllMovie = () => {
 
-}
+        const serverURL = 'http://localhost:3005/trending';
 
-       
-       
-         useEffect(()=>{
-            getTrending()
-        },[])
-    
-
-
-/////////
-       /* const addMovieHandler=(item)=>{
-            const serverUrl='http://localhost:3005/addMovie'
-            axios.post(serverUrl, item)
-            .then(respons =>{
-
-            }).catch((error)=>{
-                console.log(error)
+        fetch(serverURL)
+            .then(response => {
+                response.json()
+                .then(data => {
+                    setMovieData(data) 
+                    movieData=data
+                    console.log(movieData)
+                })
             })
-        }*/
-/////////
-
-
-
+    } ;
+    useEffect(() => {
+        getAllMovie() ;
        
- /*   
-    return(
-        <>
-        <MovieList movieData={movieData}/>
-        
-       
-         
-        </>
-    )
+    }, [])
+    return (<>
+      
+        <MovieList  movieData={movieData}/>
+    </>)
 }
-export default Home ;*/
+export default Home
+
+
+
+
+
+
+
+
+
+
+
