@@ -3,7 +3,6 @@ import Navbars from './componats/Navbars';
 import {Routes , Route} from 'react-router-dom';
 import Home from './componats/Home';
 import FavList from './componats/FavList';
-import MovieList from './componats/MovieList';
 
 function App() {
   return (

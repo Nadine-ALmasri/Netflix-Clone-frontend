@@ -14,10 +14,9 @@ import FavList from './FavList.js';
 function Movie (props){
 
   const[comments, setComments]=useState("")
-  const[path , setPath]=useState("https://www.themoviedb.org/t/p/w300_and_h450_bestv2")
 const[showFlag, setShowFlag]=useState(false)
 var [clickedMovie, setClickedMovie] = useState({});
-const addMovieHandler = (data) => {
+/*const addMovieHandler = (data) => {
   const serverUrl = 'http://localhost:3005/addMovie'
   axios.post(serverUrl, data.data)
     .then(respons => {
@@ -25,7 +24,7 @@ const addMovieHandler = (data) => {
     }).catch((error) => {
       console.log(error)
     })
-}
+}*/
 const handelShow =(item)=>{
     setShowFlag(true) ;
     setClickedMovie(item)
