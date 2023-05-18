@@ -72,7 +72,8 @@ favArray=data.data
   }
   useEffect(() => {
     gitMovieHandler()
-  }, [])
+   //eslint-disable-next-line
+  },[gitMovieHandler])
 
   return (
     <>
