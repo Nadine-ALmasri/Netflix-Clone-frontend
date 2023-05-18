@@ -16,7 +16,7 @@ function Home (){
 
     const getAllMovie = () => {
 
-        const serverURL = 'http://localhost:3005/trending';
+        const serverURL = `${process.env.REACT_APP_serverURL}/trending`;
 
         fetch(serverURL)
             .then(response => {
