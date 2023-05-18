@@ -10,15 +10,27 @@ function ModelMovie(props) {
     // show the user input value to console
    props.setComments ( event.target.value);
   }
+//////////////////////////////////
+/*const addComments = (item) => {
+  const obj = item.id;
+  console.log(obj)
+
+  const serverUrl = `http://localhost:3005/addComment/${item.id}`
+ 
+  axios.put(serverUrl, item)
+    .then(respons => {
+console.log(respons.data)
+    }).catch((error) => {
+      console.log(error)
+      props.handleClose()
+    })}*/
 
 
 
 
-
-
-
+///////////////////////////////
   const addMovieHandler = (data) => {
-    const serverUrl = 'http://localhost:3005/addMovie'
+    const serverUrl = `${process.env.REACT_APP_serverURL}/addMovie`
     axios.post(serverUrl, data)
       .then(respons => {
 console.log(respons.data)
@@ -50,7 +62,10 @@ console.log(respons.data)
           <Button variant="secondary" onClick={props.handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={()=>{addMovieHandler(props.clickedMovie)}}>
+          <Button variant="primary" onClick={()=>
+         { {addMovieHandler(props.clickedMovie)}
+        }
+        }>
           add to Favourite
           </Button>
         </Modal.Footer>

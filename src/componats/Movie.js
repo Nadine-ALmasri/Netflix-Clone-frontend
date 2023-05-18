@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import axios from 'axios';
 import ModelMovie from './ModelMovie.js';
 import { useState } from 'react';
+import FavList from './FavList.js';
 
 
 
@@ -55,7 +56,7 @@ const handleClose=()=>{
          {comments}
               </Card.Text>
 
-              <Button variant="primary" onClick={() => handelShow(props.data)}>
+              <Button variant="danger" onClick={() => handelShow(props.data)}>
             See more
           </Button>
             </Card.Body>
@@ -72,7 +73,8 @@ const handleClose=()=>{
        
      <ModelMovie showFlag={showFlag} handleClose={handleClose} clickedMovie={clickedMovie}  setComments={setComments}
         comments={comments} />
-            
+          <FavList clickedMovie={clickedMovie}  setComments={setComments}
+        comments={comments}/> 
         </>
     )}
 
