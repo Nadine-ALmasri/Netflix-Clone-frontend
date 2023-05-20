@@ -21,7 +21,7 @@ function ModelFavMovie(props) {
         }
         console.log(obj)
         
-        const serverURL = `${process.env.REACT_APP_serverURL}/${props.clickedFavMovie.id}`;
+        const serverURL = `${process.env.REACT_APP_serverURL}/updatedMovie/${props.clickedFavMovie.id}`;
         const result = await axios.put(serverURL,obj);
         console.log('done',result.data)
 

@@ -4,14 +4,17 @@ import axios from 'axios';
 import Image from 'react-bootstrap/Image';
 import Form from 'react-bootstrap/Form';
 import Movie from './Movie';
+import FavList from './FavList';
 function ModelMovie(props) {
  
   const getInputValue = (event)=>{
     // show the user input value to console
-   props.setComments ( event.target.value);
+   props.setComment ( event.target.value);
+   console.log(props.comment)
   }
 //////////////////////////////////
 /*const addComments = (item) => {
+  console.log (item)
   const obj = item.id;
   console.log(obj)
 
@@ -23,21 +26,33 @@ console.log(respons.data)
     }).catch((error) => {
       console.log(error)
       props.handleClose()
-    })}*/
-
+    })}
+*/
 
 
 
 ///////////////////////////////
-  const addMovieHandler = (data) => {
+  const addMovieHandler = (item) => {
     const serverUrl = `${process.env.REACT_APP_serverURL}/addMovie`
+    let comment=props.comment
+   
+    const data = { ...item,comment}
     axios.post(serverUrl, data)
+  
       .then(respons => {
 console.log(respons.data)
+
+
       }).catch((error) => {
         console.log(error)
-      })}
-  return (<>
+      })
+      props.handleClose()
+    }
+
+    
+    
+    
+      return (<>
   
  
       <Modal size="lg"bg='dark' text="muted" border="muted"  show={props.showFlag} onHide={props.handleClose}>
@@ -53,7 +68,7 @@ console.log(respons.data)
       <Form.Control
          type="text"
          name="comments"
-         value={props.comments}
+         value={props.comment}
          onChange={getInputValue} 
       />
       <Form.Text id="yourComment" >
@@ -63,14 +78,16 @@ console.log(respons.data)
             Close
           </Button>
           <Button variant="primary" onClick={()=>
-         { {addMovieHandler(props.clickedMovie)}
+          {{addMovieHandler(props.clickedMovie)}
+       
         }
-        }>
+      }
+      >
           add to Favourite
           </Button>
         </Modal.Footer>
       </Modal>
-   
+     
     </>
   
   
