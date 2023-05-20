@@ -17,16 +17,14 @@ function Home (){
     const getAllMovie = () => {
 
         const serverURL = `${process.env.REACT_APP_serverURL}/trending`;
-
-        fetch(serverURL)
-            .then(response => {
-                response.json()
-                .then(data => {
-                    setMovieData(data) 
-                    movieData=data
-                    console.log(movieData)
-                })
-            })
+        axios.get(serverURL).then(data => {
+            console.log(data)
+            setFavArray(data.data)
+      favArray=data.data
+            console.log(favArray)
+          }).catch((error) => {
+            console.log(error)
+          })
     } ;
     useEffect(() => {
         getAllMovie() ;
