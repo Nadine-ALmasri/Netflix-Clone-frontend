@@ -13,7 +13,7 @@ import FavList from './FavList.js';
 
 function Movie (props){
 
-  const[comments, setComments]=useState("")
+  const[comment, setComment]=useState("")
 const[showFlag, setShowFlag]=useState(false)
 var [clickedMovie, setClickedMovie] = useState({});
 /*const addMovieHandler = (data) => {
@@ -52,7 +52,7 @@ const handleClose=()=>{
               {props.data.overview}
               </Card.Text>
               <Card.Text bg="light">
-         {comments}
+         {comment}
               </Card.Text>
 
               <Button variant="danger" onClick={() => handelShow(props.data)}>
@@ -70,10 +70,9 @@ const handleClose=()=>{
 
       
        
-     <ModelMovie showFlag={showFlag} handleClose={handleClose} clickedMovie={clickedMovie}  setComments={setComments}
-        comments={comments} />
-          <FavList clickedMovie={clickedMovie}  setComments={setComments}
-        comments={comments}/> 
+     <ModelMovie showFlag={showFlag} handleClose={handleClose} clickedMovie={clickedMovie}  setComment={setComment}
+        comment={comment} />
+          
         </>
     )}
 

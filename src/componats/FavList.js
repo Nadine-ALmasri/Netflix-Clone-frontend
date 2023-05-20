@@ -60,7 +60,7 @@ console.log(clickedDelMovie.id)
  
  
   const gitMovieHandler = () => {
-    const serverUrl = `${process.env.REACT_APP_serverURL}/addMovie`
+    const serverUrl = `${process.env.REACT_APP_serverURL}/getMovie`
     axios.get(serverUrl).then(data => {
       console.log(data)
       setFavArray(data.data)
@@ -73,7 +73,7 @@ favArray=data.data
   useEffect(() => {
     gitMovieHandler()
    //eslint-disable-next-line
-  },[gitMovieHandler])
+  },[])
 
   return (
     <>
@@ -90,7 +90,8 @@ favArray=data.data
                    
                     <h3>{item.release_date}</h3>
                     <p>{item.overview}</p> 
-                    <p>{props.Comment}</p>
+                    <p background-color='red'>{item.comment}</p>
+              
                   </Card.Text>
                   <div className="d-grid gap-2">
       <Button variant="secondary" size="lg" onClick={() => funShow(item)}>
